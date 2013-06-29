@@ -1,0 +1,13 @@
+citHeader("To cite the lsr package in publications use:")
+citEntry(entry="Manual",
+         title = "Learning statistics with R: A tutorial for psychology students and other beginners",
+         author = "Daniel Navarro",
+	     Organization = "University of Adelaide",        
+         address      = "Adelaide, Australia",
+         year         = 2013,
+         note         = "R package version 0.2.5",
+         textVersion = 
+         paste("Navarro, D. J. (2013)", 
+               "Learning statistics with R: A tutorial for psychology students and other beginners.",
+               "University of Adelaide. Adelaide, Australia")
+               )
