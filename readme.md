@@ -1,22 +1,23 @@
 # R package: "lsr"
 
+
+## Description
+
+The `lsr` package is the package associated with my introductory statistics class lecture notes, [Learning Statistics with R](http://ua.edu.au/ccs/teaching/lsr). The package contains a number of convenience functions and simple statistical tools that I've found are handy for beginners to have access to. 
+
 ## Version
 
 The current version on CRAN is 0.2.4. The repository files represent the current state of 0.2.5.
 
-## Description
-
-The `lsr` package is the package associated with my introductory statistics class lecture notes, <a href="http://ua.edu.au/ccs/teaching/lsr">Learning Statistics with R</a>. The package contains a number of convenience functions and simple statistical tools that I've found are handy for beginners to have access to. 
-
 ## Using the package
 
-The easiest way to use any of the functions in the `lsr` package is to install the CRAN version. The CRAN page for the package is <a href="http://cran.r-project.org/web/packages/lsr/index.html">here</a>. It has no dependencies on any packages (other than those that are distributed as the R core, obviously), and can be installed from within R using the command:
+The easiest way to use any of the functions in the `lsr` package is to install the CRAN version. The CRAN page for the package is [here](http://cran.r-project.org/web/packages/lsr/index.html"). It has no dependencies on any packages (other than those that are distributed as the R core, obviously), and can be installed from within R using the command:
 
 `install.packages("lsr")` 
 
-Alternatively, if you want to use the most recent version of some function, then you can always source the corresponding file within R using the `source()` function.
+Alternatively, if you want to use the most recent version of some function, the easiest thing to do is source the corresponding file within R using the `source()` function.
 
-Finally, you can build the package from source. The files included in this repository consist of the .R files defining the various functions as well as the .Rd files for the help documentation, the namespace file, the description file, the citation file and the news file. In other words, it includes all files that are necessary to build and install the pacakge yourself. This might be worth doing in some instances, especially if there's a bug fix involved. This repository contains the latest version of the files. In contrast, I only usually update the CRAN package every few months. 
+On the other hand, you can build the package from source. The files included in this repository consist of the .R files defining the various functions, as well as the .Rd files for the help documentation, the namespace file, the description file, the citation file and the news file, and the directory structure matches that expected for an R package. In other words, it includes all files that are necessary to build and install the pacakge yourself. This might be worth doing in some instances, especially if there's a bug fix involved. This repository contains the latest version of the files. In contrast, I only usually update the CRAN package every few months. 
 
 To check that the package will build correctly (on a unix-alike) type the following into the terminal:
 
@@ -31,6 +32,8 @@ and to install it
 `R CMD install lsr`
 
 ## Package contents
+
+Each function can be found in a separate file, with the usual .R extension. Some minimal documentation and commenting can be found in the source code, but as usual the most extensive help information is in the .Rd file associated with each function.
 
 ### Descriptive statistics
 
