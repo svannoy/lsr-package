@@ -13,5 +13,5 @@ expandFactors <- function( data, ... ) {
   attr(df,"contrasts") <- NULL
   attr(df,"assign") <- NULL
   
-  return(df)
+  return( as.data.frame(df) )
 }

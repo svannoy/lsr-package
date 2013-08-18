@@ -3,6 +3,7 @@ NEWS file for the lsr package
 Version 0.2.5
 
 - pooledSD moved to a sub-function of cohensD.
+- expandFactors now returns a data frame rather than a matrix
 
 Version 0.2.4
 
