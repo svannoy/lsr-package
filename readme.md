@@ -9,27 +9,20 @@ The `lsr` package is the package associated with my introductory statistics clas
 
 The current version on CRAN is 0.2.4. The repository files represent the current state of 0.2.5.
 
-## Using the package
+## Installation
+
+### From CRAN
 
 The easiest way to use any of the functions in the `lsr` package is to install the CRAN version. The CRAN page for the package is [here](http://cran.r-project.org/web/packages/lsr/index.html"). It has no dependencies on any packages (other than those that are distributed as the R core, obviously), and can be installed from within R using the command:
 
 `install.packages("lsr")` 
 
-Alternatively, if you want to use the most recent version of some function, the easiest thing to do is source the corresponding file within R using the `source()` function.
+### From bitbucket
 
-On the other hand, you can build the package from source. The files included in this repository consist of the .R files defining the various functions, as well as the .Rd files for the help documentation, the namespace file, the description file, the citation file and the news file, and the directory structure matches that expected for an R package. In other words, it includes all files that are necessary to build and install the pacakge yourself. This might be worth doing in some instances, especially if there's a bug fix involved. This repository contains the latest version of the files. In contrast, I only usually update the CRAN package every few months. 
+The `devtools` package contains functions that allow you to install R packages directly from bitbucket or github. If you've installed and loaded the `devtools` package, the installation command is
 
-To check that the package will build correctly (on a unix-alike) type the following into the terminal:
+`install_bitbucket("lsr-package","dannavarro")`
 
-`R CMD check lsr`
-
-(from the parent directory: i.e. the one containing this readme file). If those checks look good, then you can build the package using the command:
-
-`R CMD build lsr`
-
-and to install it
-
-`R CMD install lsr`
 
 ## Package contents
 
