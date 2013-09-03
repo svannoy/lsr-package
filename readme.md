@@ -33,7 +33,8 @@ Each function can be found in a separate file, with the usual .R extension. Some
 - `aad`	Mean (average) absolute deviation from the mean
 - `maxFreq`	Frequency of the sample mode
 - `modeOf`	Sample mode 
-- `quantileCut`	Cut a variable into several equallit sized categories
+- `quantileCut`	Cut a variable into several equally sized categories
+-  `correlate` Compute a correlation matrix
 
 ### Effect size calculations
 
