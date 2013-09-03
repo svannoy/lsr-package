@@ -161,11 +161,11 @@ print.correlate <- function( x, ... ){
     
     # function to return the significance stars string
     getSigString <- function(p) {
-      if( is.na(p) | p > .1 ) return( "    " )
-      if( p > .05 ) return( ".   " )
-      if( p > .01 ) return( "*   " ) 
-      if( p > .001 ) return( "**  " )
-      return( "*** " )
+      if( is.na(p) | p > .1 ) return( "   " )
+      if( p > .05 ) return( ".  " )
+      if( p > .01 ) return( "*  " ) 
+      if( p > .001 ) return( "**" )
+      return( "***" )
     }
     
     # function to generate interleaved indices
@@ -180,9 +180,13 @@ print.correlate <- function( x, ... ){
     n <- dim( x$correlation )[2] # number of columns
     txt <- makeTxt( x$correlation, nDigits, naPrint ) # text form of the correlation matrix
     for( i in 1:n ) txt[,i] <- paste0(txt[,i], sapply(x$p.value[,i], getSigString)) # append stars
-    colnames(txt) <- paste0( colnames(x$correlation), rep.int("    ",n)) # column names
+    colnames(txt) <- paste0( colnames(x$correlation), rep.int("   ",n)) # column names
     rownames(txt) <- rownames( x$correlation ) # row names
-    printTxt(txt) #
+    printTxt(txt) 
+    
+    # print the key
+    cat("\n---\n")
+    cat("Signif. codes: . = p < .1, * = p<.05, ** = p<.01, *** = p<.001\n")
     
   } else { # if no significance stars needed...
   
