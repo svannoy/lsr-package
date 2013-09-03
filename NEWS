@@ -4,6 +4,7 @@ Version 0.2.5
 
 - correlate function added
 - pooledSD moved to a sub-function of cohensD.
+- formula argument to cohensD is now handled using model.frame
 - expandFactors now returns a data frame rather than a matrix
 
 Version 0.2.4

@@ -28,7 +28,17 @@ cohensD <- function(x = NULL, y = NULL, data = NULL, method = "pooled",  mu = 0,
   
   # split formula if need be...
   if (is(x,"formula")) {
-    if (is.null(data)) { data <- sys.frame(-1) }
+    # old code
+    #if (is.null(data)) { data <- sys.frame(-1) }
+    
+    # make a data frame if none given
+    if( is.null(data) ) { 
+      data <- try( eval( model.frame(formula = x), envir=parent.frame() ), silent=TRUE)
+      if( is(data,"try-error") ) { 
+        stop( "cannot create data frame from variables in formula. Variables may not be the same length")
+      }
+    }
+    
     outcome <- eval( x[[2]], data )
     group <- eval( x[[3]], data )
     group <- as.factor(group) 
