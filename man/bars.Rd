@@ -5,12 +5,12 @@
 
 \description{Grouped bar plots with error bars}
 
-\usage{ bars( formula, data=NULL, heightFun=mean, errorFun=ciMean, 
-	          yLabel=NULL, xLabels=NULL, main="", ylim=NULL,
-	          barFillColour=NULL, barLineWidth=2, barLineColour="black",
-              barSpaceSmall=.2, barSpaceBig=1, legendLabels=NULL,
-              legendDownShift=0, legendLeftShift=0, errorBarLineWidth=1,
-              errorBarLineColour="grey50", errorBarWhiskerWidth=.2 ) }
+\usage{bars( formula, data=NULL, heightFun=mean, errorFun=ciMean, 
+      yLabel=NULL, xLabels=NULL, main="", ylim=NULL,
+      barFillColour=NULL, barLineWidth=2, barLineColour="black",
+      barSpaceSmall=.2, barSpaceBig=1, legendLabels=NULL,
+      legendDownShift=0, legendLeftShift=0, errorBarLineWidth=1,
+      errorBarLineColour="grey50", errorBarWhiskerWidth=.2 ) }
 
 %- maybe also 'usage' for other objects documented here.
 \arguments{
