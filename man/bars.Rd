@@ -3,15 +3,15 @@
 
 \title{Grouped Bar Plots with Error Bars}
 
-\description{Grouped bar plots with error bars
+\description{Grouped bar plots with error bars}
 
 \usage{ bars( formula, data=NULL, heightFun=mean, errorFun=ciMean, 
 	          yLabel=NULL, xLabels=NULL, main="", ylim=NULL,
 	          barFillColour=NULL, barLineWidth=2, barLineColour="black",
               barSpaceSmall=.2, barSpaceBig=1, legendLabels=NULL,
               legendDownShift=0, legendLeftShift=0, errorBarLineWidth=1,
-              errorBarLineColour="grey50", errorBarWhiskerWidth=.2 )
-}
+              errorBarLineColour="grey50", errorBarWhiskerWidth=.2 ) }
+
 %- maybe also 'usage' for other objects documented here.
 \arguments{
 \item{formula}{A two-sided formula specifying the response variable and the grouping factors}
@@ -20,7 +20,7 @@
 \item{errorFun}{The function used to calculate the error bar for a group (default=ciMean). No bars drawn if \code{errorFun=FALSE}}
 \item{yLabel}{The y-axis label (defaults to the name of the response variable)}
 \item{xLabels}{The x-axis bar labels (defaults to factor labels of the appropriate grouping variable)}
-\item{main=""}{The plot title} 
+\item{main}{The plot title} 
 \item{ylim}{The y-axis limit: lower bound defaults to 0, default upper bound estimated}
 \item{barFillColour}{The colours to fill the bars (defaults to a pink/blue scheme???)}
 \item{barLineWidth}{The width of the bar border lines (default=2)}
