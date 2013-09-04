@@ -54,7 +54,7 @@ Daniel Navarro
 %% ~Make other sections like Warning with \section{Warning }{....} ~
 
 \seealso{
-\code{\link{barplot}}, \code{bargraph.CI} (in the \pkg{sciplots} package)
+\code{\link{barplot}}, \code{\link{bargraph.CI}} (in the \pkg{sciplot} package)
 }
 
 
