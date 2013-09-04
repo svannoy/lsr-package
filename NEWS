@@ -1,7 +1,8 @@
 NEWS file for the lsr package
 
-Version 0.2.5
+Version 0.3
 
+- bars function added
 - correlate function added
 - pooledSD moved to a sub-function of cohensD.
 - formula argument to cohensD is now handled using model.frame

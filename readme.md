@@ -7,7 +7,7 @@ The `lsr` package is the package associated with my introductory statistics clas
 
 ## Version
 
-The current version on CRAN is 0.2.4. The repository files represent the current state of 0.2.5.
+The current version on CRAN is 0.2.4. The repository files represent the current state of 0.3.
 
 ## Installation
 
@@ -34,7 +34,12 @@ Each function can be found in a separate file, with the usual .R extension. Some
 - `maxFreq`	Frequency of the sample mode
 - `modeOf`	Sample mode 
 - `quantileCut`	Cut a variable into several equally sized categories
--  `correlate` Compute a correlation matrix
+- `correlate` Compute a correlation matrix
+
+### Plotting functions
+
+- `bars` Bar plots with confidence intervals, grouped by one or two factors
+
 
 ### Effect size calculations
 
