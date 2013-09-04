@@ -10,7 +10,7 @@
       barFillColour=NULL, barLineWidth=2, barLineColour="black",
       barSpaceSmall=.2, barSpaceBig=1, legendLabels=NULL,
       legendDownShift=0, legendLeftShift=0, errorBarLineWidth=1,
-      errorBarLineColour="grey50", errorBarWhiskerWidth=.2 ) }
+      errorBarLineColour="grey40", errorBarWhiskerWidth=.2 ) }
 
 %- maybe also 'usage' for other objects documented here.
 \arguments{
@@ -22,7 +22,7 @@
 \item{xLabels}{The x-axis bar labels (defaults to factor labels of the appropriate grouping variable)}
 \item{main}{The plot title} 
 \item{ylim}{The y-axis limit: lower bound defaults to 0, default upper bound estimated}
-\item{barFillColour}{The colours to fill the bars (defaults to a pink/blue scheme???)}
+\item{barFillColour}{The colours to fill the bars (defaults to a rainbow-like palette, but with lighter colours)}
 \item{barLineWidth}{The width of the bar border lines (default=2)}
 \item{barLineColour}{The colour of the bar border lines (default="black")}
 \item{barSpaceSmall}{The size of the gap between bars within a cluster, as a proportion of bar width (default=.2)}
@@ -31,7 +31,7 @@
 \item{legendDownShift}{How far below the top is the legend, as proportion of plot height? (default=0)} 
 \item{legendLeftShift}{How far away from the right edge is the legend, as proportion of plot? (default=0)}
 \item{errorBarLineWidth}{The line width for the error bars (default=1)}
-\item{errorBarLineColour}{The colour of the error bars (default="grey50")} 
+\item{errorBarLineColour}{The colour of the error bars (default="grey40")} 
 \item{errorBarWhiskerWidth}{The width of error bar whiskers, as proportion of bar width (default=.2)}
 }
 
