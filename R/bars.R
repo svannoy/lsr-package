@@ -42,19 +42,20 @@ bars <- function(
     return(out)
   }
   
-  # function checking that a vector of inputs specify colours
-  isColours <- function (x) {
-    isOK <- rep.int(FALSE,length(x)) 
-    if( is(x,"character")) {
-      pattern <- paste0( "^#", paste(rep.int("[0-9A-Fa-f]",6),collapse=""), "$" )
-      isOK[ grep(pattern,x) ] <- TRUE 
-      isOK <- isOK | (x %in% colours())
-    }
-    if( isNumbers(x) ){ 
-      isOK <- TRUE # numbers are rounded and plugged into colours()
-    }
-    return(all(isOK))
-  }
+#   TODO: support transparency (ie. 8-digit hex), check if I've missed anything  
+#   # function checking that a vector of inputs specify colours
+#   isColours <- function (x) {
+#     isOK <- rep.int(FALSE,length(x)) 
+#     if( is(x,"character")) {
+#       pattern <- paste0( "^#", paste(rep.int("[0-9A-Fa-f]",6),collapse=""), "$" )
+#       isOK[ grep(pattern,x) ] <- TRUE 
+#       isOK <- isOK | (x %in% colours())
+#     }
+#     if( isNumbers(x) ){ 
+#       isOK <- TRUE # numbers are rounded and plugged into colours()
+#     }
+#     return(all(isOK))
+#   }
   
   ####### setup and input checking ####### 
   
@@ -66,11 +67,12 @@ bars <- function(
   if( !isNumbers( legendLeftShift, 1) ) stop( "'legendLeftShift' must be a single number")
   if( !isNumbers( errorBarLineWidth, 1) ) stop( "'errorBarLineWidth' must be a single number")
   if( !isNumbers( errorBarWhiskerWidth, 1) ) stop( "'errorBarWhiskerWidth' must be a single number")
-  
-  # CHECK that the colour inputs are vectors of colours, but no more
-  if( !is.null(barFillColour) && !isColours( barFillColour )) stop( "'barFillColour' must specify colours" )
-  if( !isColours( barLineColour )) stop( "'barLineColour' must specify colours" )
-  if( !isColours( errorBarLineColour )) stop( "'errorBarLineColour' must specify colours" )
+
+#  (currently doesn't work properly, so the check is removed)
+#  # CHECK that the colour inputs are vectors of colours, but no more
+#  if( !is.null(barFillColour) && !isColours( barFillColour )) stop( "'barFillColour' must specify colours" )
+#  if( !isColours( barLineColour )) stop( "'barLineColour' must specify colours" )
+#  if( !isColours( errorBarLineColour )) stop( "'errorBarLineColour' must specify colours" )
   
   # CHECK that titles & labels can be coerced to character
   if( is( try( as.character(main), silent=TRUE), "try-error" )) 
