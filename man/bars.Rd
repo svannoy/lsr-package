@@ -22,7 +22,7 @@
 \item{xLabels}{The x-axis bar labels (defaults to factor labels of the appropriate grouping variable)}
 \item{main}{The plot title} 
 \item{ylim}{The y-axis limit: lower bound defaults to 0, default upper bound estimated}
-\item{barFillColour}{The colours to fill the bars (defaults to a rainbow-like palette, but with lighter colours)}
+\item{barFillColour}{The colours to fill the bars (defaults to a rainbow palette with saturation .3)}
 \item{barLineWidth}{The width of the bar border lines (default=2)}
 \item{barLineColour}{The colour of the bar border lines (default="black")}
 \item{barSpaceSmall}{The size of the gap between bars within a cluster, as a proportion of bar width (default=.2)}

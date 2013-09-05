@@ -57,19 +57,6 @@ bars <- function(
 #     return(all(isOK))
 #   }
   
-  # function to whiten colours
-  whiten <- function( cols, amt=.5 ) {
-    if( abs(amt) > 1) stop("'amt' must be between -1 and 1")
-    n <- length(cols)
-    x <- col2rgb(cols)
-    if( amt>0 ) { x <- round((1-amt)*x + amt*matrix(255,3,n))
-    } else {x <- round((1-abs(amt))*x + abs(amt)*matrix(0,3,n)) }
-    y <- vector( length=n )
-    for( i in 1:n) y[i] <- rgb( x[1,i],x[2,i],x[3,i], maxColorValue=255)
-    return(y)
-  }
-  
-  
   ####### setup and input checking ####### 
   
   # CHECK that those inputs that should be exactly one number are in fact one number
@@ -215,8 +202,8 @@ bars <- function(
   
   # customising the style of the bars
   if (is.null( barFillColour )) {
-    if( nFactors==1 ) barFillColour <- whiten( rainbow(nLevels[1]), amt=.7 ) 
-    if( nFactors==2 ) barFillColour <- whiten( rainbow(nLevels[2]), amt=.7 )
+    if( nFactors==1 ) barFillColour <-rainbow(nLevels[1], s=.3) 
+    if( nFactors==2 ) barFillColour <- rainbow(nLevels[2], s=.3) 
   }
   
   # legend
