@@ -31,7 +31,11 @@ wideToLong <- function( data, within="within", sep="_", split=TRUE) {
   
   tmp <-make.unique(c(names(data),"withintmp"))
   within.tmp <- tmp[length(tmp)]
-  x<-reshape( data, idvar=idvar, varying=varying, direction="long", times=times, v.names=v.names, timevar=within.tmp )
+  
+  x<-reshape( data, idvar=idvar, varying=varying, direction="long", 
+              times=times, v.names=v.names, timevar=within.tmp,
+              new.row.names = paste0("case.",1:(dim(data)[1]*length(times))) )
+
   
   if( split==TRUE & length( grep(sep,times,fixed=TRUE))>0 ) { # split multiple treatments into two factors?
     split.treatments <- t(as.data.frame(strsplit(x[,within.tmp],sep,fixed=TRUE)))
