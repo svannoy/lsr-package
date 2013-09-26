@@ -8,6 +8,7 @@ Version 0.3
 - formula argument to cohensD is now handled using model.frame
 - expandFactors now returns a data frame rather than a matrix
 - fixed bug in wideToLong in which the reshape function tries to create non-unique row names
+- fixed bug in quantileCut when missing data are present
 
 Version 0.2.4
 

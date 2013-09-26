@@ -1,7 +1,7 @@
 # file:    quantileCut.R 
 # author:  Dan Navarro
 # contact: daniel.navarro@adelaide.edu.au
-# changed: 29 June 2013
+# changed: 26 September 2013
 
 # quantileCut() splits the data x into n equally sized groups. Use with care: 
 # it is very frequently the case that people want to break a variable into several
@@ -13,8 +13,8 @@
 # it should be used with care.
 quantileCut <- function(x, n, ...) {
   p <- seq(0,1,1/n)
-  breaks <- quantile( x, p )
-  eps <- (max(x)-min(x)) / 1000
+  breaks <- quantile( x, p, na.rm=TRUE )
+  eps <- (max(x, na.rm=TRUE)-min(x, na.rm=TRUE)) / 1000
   breaks[1] <- breaks[1] - eps
   breaks[n+1] <- breaks[n+1] + eps  
   out <- cut(x, breaks, ...)

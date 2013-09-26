@@ -1,7 +1,7 @@
 # file:    wideToLong.R 
 # author:  Dan Navarro
 # contact: daniel.navarro@adelaide.edu.au
-# changed: 29 June 2013
+# changed: 26 September 2013
 
 # wideToLong() takes a wide-form data frame and converts it to a long-form data frame. 
 # Like it's companion function longToWide() it's not as flexible as cast() and melt(),
