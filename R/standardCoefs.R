@@ -1,7 +1,7 @@
 # file:    standardCoefs.R 
 # author:  Dan Navarro
 # contact: daniel.navarro@adelaide.edu.au
-# changed: 29 June 2013
+# changed: 13 November 2013
 
 # standardCoefs() computes the standardised regression coefficients (i.e. beta 
 # weights) for a regression model. It takes an lm object as input, and outputs a
@@ -12,6 +12,8 @@
 # is just a handy crutch for beginners: beta weights aren't the best solution to
 # the problem.
 standardCoefs <- function( x ) {
+  
+  if( !is(x,"lm") ) {stop( '"x" must be a linear model object')}
   
   # read off the useful info
   term.names <- names(x$coefficients)[-1] # all names except "intercept"

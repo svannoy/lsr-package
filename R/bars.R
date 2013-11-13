@@ -1,3 +1,7 @@
+# file:    bars.R 
+# author:  Dan Navarro
+# contact: daniel.navarro@adelaide.edu.au
+# changed: 13 November 2013
 
 bars <- function( 
   formula, # two-sided formula specifying the response variable and the grouping factors
@@ -116,7 +120,7 @@ bars <- function(
     
     # copy variables into a data frame if none is specified, and
     # CHECK that the variables are appropriate for a data frame
-    data <- try( eval( model.frame( formula = Dep ~ Group + Work), 
+    data <- try( eval( model.frame( formula = formula ), 
                        envir=parent.frame() ), silent=TRUE)
     if( is(data,"try-error") ) { 
       stop( "cannot create data frame from variables in 'formula'. 
@@ -162,6 +166,15 @@ bars <- function(
   showErrorBars <- is(errorFun,"function") 
   showLegend <- is.null(legendLabels) || length(legendLabels) > 1 || legendLabels != FALSE 
   showLegend <- showLegend & nFactors==2 # currently no legends for the one-factor case
+  
+  # REMOVE missing data and CHECK cell counts
+  completeCases <- !apply( is.na( data[,c(gpName,responseName)] ), 1, any )
+  data <- data[ completeCases, ]
+  if( any(!completeCases)) { 
+    warning( paste( sum(!completeCases), "cases removed due to missing data" ))
+  }
+  counts <- table(data[,gpName])
+  if( min(counts) < 2 ) stop( "at least 2 complete cases are needed for each group" )
   
   
   ####### compute bar heights and error bar locations ####### 
@@ -212,7 +225,7 @@ bars <- function(
   
   ####### bar plot ####### 
   
-  old.par <- par(no.readonly = TRUE) # store old graphics parameters
+  old.lwd <- par()$lwd # store old graphics parameters
   par( lwd=barLineWidth ) # set new graphics parameters
   
   if( nFactors==2 ) { # format height data for the two-factor case
@@ -230,8 +243,6 @@ bars <- function(
                    ylab=yLabel, space=c(barSpaceSmall,barSpaceBig), 
                    ylim=ylim, col=barFillColour, border=barLineColour,
                    main=main, font.main=1, names.arg=xLabels )
-  par( lwd=1 ) # not sure if this ought to be here.
-  
     
   ####### legend ####### 
   
@@ -285,7 +296,9 @@ bars <- function(
   ####### clean up ####### 
   
   # reset graphics
-  par( old.par )
+  #par( old.par )
+  par( lwd=old.lwd ) 
+  
   
   # concatenate for output
   out <- cbind( barHeights[,1:nFactors,drop=FALSE], 
@@ -293,6 +306,7 @@ bars <- function(
   if( showErrorBars ) {
     out <- cbind( out, errorBars[[nFactors+1]])
   }
+  
   return(invisible(out))
   
 }

@@ -1,10 +1,15 @@
 # file:    importList.R 
 # author:  Dan Navarro
 # contact: daniel.navarro@adelaide.edu.au
-# changed: 29 June 2013
+# changed: 13 November 2013
 
 # importList() copies each element of a list into a separate variable in the workspace. 
 importList <- function(x, ask = TRUE ) {
+  
+  if( !is(x,"list") & !is(x,"data.frame")) stop( '"x" must be a list or data frame')
+  if( !is(ask,"logical") | length(ask) !=1 ) {
+    stop( '"ask" must be a single logical value')
+  }
   
   envir = parent.frame() # import to parent environment
   

@@ -1,7 +1,7 @@
 # file:    etaSquared.R 
 # author:  Dan Navarro
 # contact: daniel.navarro@adelaide.edu.au
-# changed: 29 June 2013
+# changed: 13 November 2013
 
 # etaSquared() calculates eta-squared and partial eta-squared for linear models 
 # (usually ANOVAs). It takes an lm object as input and computes the effect size 
@@ -10,6 +10,14 @@
 # only displays the effect size, but if requested it will also print out the full
 # ANOVA table.
 etaSquared<- function( x, type = 2, anova = FALSE ) {
+  
+  if( !is(anova,"logical") | length(anova) !=1 ) {
+    stop( '"anova" must be a single logical value')
+  }
+  if( !is(x,"lm") ) {stop( '"x" must be a linear model object')}
+  if( !is(type,"numeric") | length(type) !=1 ) {
+    stop("type must be equal to 1,2 or 3") 
+  }
   
   if( type == 1) {
     

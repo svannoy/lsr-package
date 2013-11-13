@@ -1,3 +1,8 @@
+# file:    correlate.R 
+# author:  Dan Navarro
+# contact: daniel.navarro@adelaide.edu.au
+# changed: 13 November 2013
+
 # compute correlation matrix:
 #  - automatically removes non-numeric variables from the data
 #  - automatically does "pairwise.complete.obs" for handling missing data
@@ -28,6 +33,34 @@ correlate <- function( x, y=NULL, test=FALSE, corr.method="pearson", p.adjust.me
   args <- c( two.inputs=two.inputs, test=test, 
              corr.method=corr.method, p.adjust.method=p.adjust.method )
   
+  # define a function to run correlation test and trap warning message
+  getCT <- function( x,y, method ) {
+    
+    # get the correlation test, trapping the ties problem warning as needed...
+    old.warn <- options(warn=2) # convert warnings to errors
+    ct <- try( cor.test( x, y, method=method), silent=TRUE ) # try the correlation
+    tp <- FALSE # assume no ties problem unless...
+    
+    # check for failures:
+    if( class(ct) == "try-error" ) {
+      
+      # handle the case when the "error" was a ties warning
+      tp <- length( grep("exact p-value with ties",ct )) > 0
+      if( tp ) { # if it was a ties problem... 
+        options(warn=-1) # suppress warnings completely for the next run...
+      } else { # if not...
+        options( old.warn ) # reset warning state and let R throw what it likes...
+      }
+      
+      # now run the test again...
+      ct <- cor.test( x, y, method=method )
+    } 
+    options( old.warn ) # reset warnings to original state
+    
+    return( list( ct=ct, tp=tp) )
+    
+  }
+  
   
   if( !two.inputs ) {
     #### one matrix case ###
@@ -43,17 +76,21 @@ correlate <- function( x, y=NULL, test=FALSE, corr.method="pearson", p.adjust.me
     rownames( R$correlation ) <- colnames( R$correlation ) <- colnames(x)
     R$sample.size <- R$p.value <- R$correlation  
     R$args <- args
+    R$tiesProblem <- FALSE
     
     # run pairwise tests (inefficient looping!)
     for( a in 1:(n.cont-1) ){
       for( b in (a+1):n.cont) {     
         i <- inds[a] # the a-th continuous variable
         j <- inds[b] # the b-th continuous variable
-        ct <- cor.test( x[,i], x[,j], method=corr.method ) # run the test
+             
+       # ct <- cor.test( x[,i], x[,j], method=corr.method ) 
+        cttp <- getCT( x[,i], x[,j], corr.method )
         
         # store the output
-        R$correlation[j,i] <- R$correlation[i,j] <- ct$estimate
-        R$p.value[j,i] <- R$p.value[i,j] <- ct$p.value
+        R$tiesProblem <- R$tiesProblem | cttp$tp
+        R$correlation[j,i] <- R$correlation[i,j] <- cttp$ct$estimate
+        R$p.value[j,i] <- R$p.value[i,j] <- cttp$ct$p.value
       }
     }
     
@@ -95,17 +132,22 @@ correlate <- function( x, y=NULL, test=FALSE, corr.method="pearson", p.adjust.me
     colnames( R$correlation ) <- colnames(y)
     R$sample.size <- R$p.value <- R$correlation  
     R$args <- args
+    R$tiesProblem <- FALSE
     
     # run pairwise tests (inefficient looping!)
     for( a in 1:n.cont.x ){
       for( b in 1:n.cont.y) {     
         i <- inds.x[a] # the a-th continuous variable in x
         j <- inds.y[b] # the b-th continuous variable in y
-        ct <- cor.test( x[,i], y[,j], method=corr.method ) # run the test
+        
+        #ct <- cor.test( x[,i], y[,j], method=corr.method ) # run the test
+        cttp <- getCT( x[,i], x[,j], corr.method )
+        
         
         # store the output
-        R$correlation[i,j] <- ct$estimate
-        R$p.value[i,j] <- ct$p.value
+        R$tiesProblem <- R$tiesProblem | cttp$tp
+        R$correlation[i,j] <- cttp$ct$estimate
+        R$p.value[i,j] <- cttp$ct$p.value
         
         # store sample size
         R$sample.size[i,j] <- sum(!(is.na(x[,i]) | is.na(y[,j]))) 
@@ -203,6 +245,9 @@ print.correlate <- function( x, ... ){
     } else { nTests <- sum( !is.na( x$correlation)) / 2 }
     cat("- total number of tests run: ", nTests, "\n")
     cat("- correction for multiple testing: ", x$arg["p.adjust.method"],"\n")
+    if( x$tiesProblem ) {
+      cat("- WARNING: cannot compute exact p-values with ties\n" )
+    }
     cat("\n")
     
     # print p-values, forcing nDigits 

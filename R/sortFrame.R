@@ -1,11 +1,18 @@
 # file:    sortFrame.R 
 # author:  Dan Navarro
 # contact: daniel.navarro@adelaide.edu.au
-# changed: 29 June 2013
+# changed: 13 November 2013
 
 # sortFrame() sorts the cases of a data frame by one or more variables. There's a bit of 
 # work to do to make the sorting more intuitive, but it's fairly functional now.
 sortFrame <- function(x,..., alphabetical = TRUE){
+  
+  if( !is(x,"data.frame") ) {
+    stop( '"x" must be a data frame')
+  }
+  if( !is(alphabetical,"logical") | length(alphabetical) !=1 ) {
+    stop( '"alphabetical" must be a single logical value')
+  }
   
   dots <- as.list(substitute(list(...)))[-1L] # list of quoted sort terms
   if( length(dots) == 0 ){ return(x) } # do nothing if null arguments
