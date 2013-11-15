@@ -7,7 +7,7 @@ The `lsr` package is the package associated with my introductory statistics clas
 
 ## Version
 
-The current version on CRAN is 0.2.4. The repository files represent the current state of 0.3.
+The current version on CRAN is 0.3. The repository files represent the current state of 0.3.1
 
 ## Installation
 
@@ -52,6 +52,9 @@ Each function can be found in a separate file, with the usual .R extension. Some
 - `ciMean`	Compute a standard (i.e. normal) confidence interval around the sample mean
 - `standardCoefs`	Compute standardised regression coefficients for a linear model
 - `posthocPairwiseT`	Convenience function for running post-hoc pairwise t-tests for ANOVA
+- `oneSampleTTest`
+- `pairedSamplesTTest`
+- `independentSamplesTTest`
 
 ### Data manipulation
 
