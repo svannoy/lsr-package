@@ -21,12 +21,72 @@ The \code{method} argument allows the user to select one of several different va
 
 For other versions of the t-test, there are two possibilities implemented. If the original t-test did not make a homogeneity of variance assumption, as per the Welch test, the normalising term should mirror the Welch test (\code{method = "unequal"}). Or, if the original t-test was a paired samples t-test, and the effect size desired is intended to be based on the standard deviation of the differences, then \code{method = "paired"} should be used. 
 
-The last argument to \code{cohensD} is \code{mu}, which represents an offset parameter. Specifically, it gives the value such that \code{mean(x) - mean(y) = mu} would be expected to correspond to an effect size estimate of 0. In most cases we would expect that \code{mu = 0} (the default), but not always.
+The last argument to \code{cohensD} is \code{mu}, which represents the mean against which a paired or one sample Cohen's d calculation should be assessed. Specifically, it gives the value such that \code{mean(x) - mean(y) = mu} would be expected to correspond to an effect size estimate of 0. In most cases we would expect that \code{mu = 0} (the default), but not always.
+
 }
+
+
+\section{Argument checking}{
+
+\code{cohensD} checks whether the arguments specified by the user make sense. For instance, specifying numeric variables \code{x} and \code{y} together with a mean \code{mu} does not make sense, since the \code{x} and \code{y} values imply a two-sample calculation, but \code{mu} implies a one sample calculation. The cases that the function is intended to support are listed below.
+
+The following produce a one-sample Cohen's d:
+
+\enumerate{
+  \item numeric \code{x}
+  \item numeric \code{x}, numeric \code{mu} of length 1
+}
+
+
+The following produce a paired-sample Cohen's d:
+
+\enumerate{
+  \item numeric \code{x}, numeric \code{y}, \code{method="paired"}
+}
+
+
+The following produce a two-sample Cohen's d:
+
+\enumerate{
+  \item numeric \code{x}, numeric \code{y}
+  \item numeric \code{x}, numeric \code{y}, valid value for \code{method} (except "paired") 
+  \item formula \code{formula}, data frame \code{data} 
+  \item formula \code{formula}, data frame \code{data}, valid value for \code{method} (except "paired")
+  \item formula \code{formula}, valid value for \code{method} (except "paired")
+  \item formula \code{formula}
+}
+
+In a perfect world, these would be the only input combinations allowed. However, because it is commonplace for people to drop argument names, and because I don't want to break backwards compatibility for \code{cohensD} too much, there are a number of cases where the function attempts to guess the user's intention.
+
+The following produce a paired-sample Cohen's d:
+
+\enumerate{
+  \item formula \code{x}, \code{method="paired"} [issues warning]
+  \item formula \code{x}, data frame \code{y}, \code{method="paired"} [issues warning]
+  \item formula \code{x}, data frame \code{data}, \code{method="paired"} [issues warning]
+  \item formula \code{formula}, data frame \code{x}, \code{method="paired"} [issues warning]
+  \item formula \code{formula}, data frame \code{data}, \code{method="paired"} [issues warning]
+  \item formula \code{formula}, \code{method="paired"} [issues warning]
+}
+
+The following produce a two-sample Cohen's d:
+
+\enumerate{
+  \item formula \code{x}
+  \item formula \code{x}, data frame \code{y}
+  \item formula \code{x}, data frame \code{data}
+  \item formula \code{x}, valid value for \code{method} (except "paired")
+  \item formula \code{x}, data frame \code{y}, valid value for \code{method} (except "paired")
+  \item formula \code{x}, data frame \code{data}, valid value for \code{method} (except "paired")
+  \item formula \code{formula}, data frame \code{x}
+  \item formula \code{formula}, data frame \code{x}, valid value for \code{method} (except "paired")
+}
+
+}
+
 \value{Numeric variable containing the effect size, d. Note that it does not show the direction of the effect, only the magnitude. That is, the value of d returned by the function is always positive or zero.
 }
 
-\section{Note}{The \code{cohensD} function attempts to check whether the arguments specified by the user make sense. For instance, specifying numeric variables \code{x} and \code{y} together with a mean \code{mu} does not make sense, since the \code{x} and \code{y} values imply a two-sample calculation, buy \code{mu} implies a one sample calculation. I've attempted to catch every meaningful case, allowing a certain amount of flexibility recognising that novice users will sometimes forget to name arguments when they should (e.g., it actually allows a data frame \code{x} and formula \code{formula}, to capture cases where the user inputs something like \code{cohensD(formula= outcome~group, myDataFrame)}). There may be mistakes in the cases allowed however.}
 
 \section{Warning}{This package is under development, and has been released only due to teaching constraints. Until this notice disappears from the help files, you should assume that everything in the package is subject to change. Backwards compatibility is NOT guaranteed. Functions may be deleted in future versions and new syntax may be inconsistent with earlier versions. For the moment at least, this package should be treated with extreme caution.}
 
