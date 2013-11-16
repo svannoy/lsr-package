@@ -7,12 +7,12 @@
 \usage{ cohensD( x = NULL, y = NULL, data = NULL, method = "pooled", mu = 0, formula = NULL ) }
 %- maybe also 'usage' for other objects documented here.
 \arguments{
-  \item{x}{Either a numeric variable containing the data for group 1, or a formula of the form \code{outcome ~ group}}
+  \item{x}{A numeric variable containing the data for group 1, or possibly a formula of the form \code{outcome ~ group}}
   \item{y}{If \code{x} is a numeric variable, the \code{y} argument should be a numeric variable containing the data for group 2. If a one-sample calculation is desired, then no value for \code{y} should be specified.}
   \item{data}{If \code{x} is a formula, then \code{data} is an optional argument specifying data frame containing the variables in the formula.}
   \item{method}{Which version of the d statistic should we calculate? Possible values are \code{"pooled"} (the default), \code{"x.sd"}, \code{"y.sd"}, \code{"corrected"}, \code{"raw"}, \code{"paired"} and \code{"unequal"}. See below for specifics. }
   \item{mu}{The "null" value against which the effect size should be measured. This is almost always 0 (the default), so this argument is rarely specified.}
-  \item{formula}{An alias for \code{x} if a formula is used. Included for the sake of consistency with the \code{t.test} function.}
+  \item{formula}{An alias for \code{x} if a formula input is used. Included for the sake of consistency with the \code{t.test} function.}
 }
 
 \details{The \code{cohensD} function calculates the Cohen's d measure of effect size in one of several different formats. The function is intended to be called in one of two different ways, mirroring the \code{t.test} function. That is, the first input argument \code{x} is a formula, then a command of the form \code{cohensD(x = outcome~group, data = data.frame)} is expected, whereas if \code{x} is a numeric variable, then a command of the form \code{cohensD(x = group1, y = group2)} is expected. Note that \code{cohensD} is not a generic function.
@@ -21,14 +21,13 @@ The \code{method} argument allows the user to select one of several different va
 
 For other versions of the t-test, there are two possibilities implemented. If the original t-test did not make a homogeneity of variance assumption, as per the Welch test, the normalising term should mirror the Welch test (\code{method = "unequal"}). Or, if the original t-test was a paired samples t-test, and the effect size desired is intended to be based on the standard deviation of the differences, then \code{method = "paired"} should be used. 
 
-The last argument to \code{cohensD} is \code{mu}, which represents the mean against which a paired or one sample Cohen's d calculation should be assessed. Specifically, it gives the value such that \code{mean(x) - mean(y) = mu} would be expected to correspond to an effect size estimate of 0. In most cases we would expect that \code{mu = 0} (the default), but not always.
-
+The last argument to \code{cohensD} is \code{mu}, which represents the mean against which one sample Cohen's d calculation should be assessed. Note that this is a slightly narrower usage of \code{mu} than the \code{t.test} function allows. \code{cohensD} does not currently support the use of a non-zero \code{mu} value for a paired-samples calculation. 
 }
 
 
 \section{Argument checking}{
 
-\code{cohensD} checks whether the arguments specified by the user make sense. For instance, specifying numeric variables \code{x} and \code{y} together with a mean \code{mu} does not make sense, since the \code{x} and \code{y} values imply a two-sample calculation, but \code{mu} implies a one sample calculation. The cases that the function is intended to support are listed below.
+\code{cohensD} checks whether the arguments specified by the user make sense. For instance, specifying numeric variables \code{x} and \code{y} together with a mean \code{mu} does not make sense, since the \code{x} and \code{y} values imply a two-sample calculation, but \code{mu} implies a one sample calculation. The cases that the function is "intended" to support are listed below.
 
 The following produce a one-sample Cohen's d:
 
@@ -101,8 +100,9 @@ Daniel Navarro
 %% ~Make other sections like Warning with \section{Warning }{....} ~
 
 \seealso{
-\code{\link{t.test}}
+\code{\link{t.test}}, \code{\link{oneSampleTTest}}, \code{\link{pairedSamplesTTest}}, \code{\link{independentSamplesTTest}} 
 }
+
 \examples{
 # calculate Cohen's d for two independent samples:
 gradesA <- c(55, 65, 65, 68, 70) # 5 students with teacher A
