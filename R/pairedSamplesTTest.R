@@ -235,7 +235,9 @@ pairedSamplesTTest <- function(
   if( any(tt > 1) ) stop( "there too many observations for some cases" )
   
   # find cases to remove
-  exclude.id <- tt[,1] !=1 | tt[,2] != 1
+  exclude.id <- tt[,1] !=1 | tt[,2] != 1   # exclude if the relevant row is missing...
+  more.bad <- as.character(unique(data[apply( is.na(data[,c(outcome,group)]), 1, any ),id])) # or if it has NA
+  exclude.id[ more.bad ] <- TRUE   
   if( sum(exclude.id) > 0){
     warning( paste( sum(exclude.id), "case(s) removed due to missingness" ) )
   }

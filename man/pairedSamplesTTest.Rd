@@ -49,17 +49,29 @@ Daniel Navarro
 %% ~Make other sections like Warning with \section{Warning }{....} ~
 
 \seealso{
-\code{\link{t.test}}, \code{\link{oneSampleTTest}}, \code{\link{independentSamplesTTest}}
+\code{\link{t.test}}, \code{\link{oneSampleTTest}}, \code{\link{independentSamplesTTest}}, \code{\link{cohensD}}
 }
 
 
 \examples{
 
 df <- data.frame(
-       id = factor( c(1, 1, 2, 2, 3, 3) ), 
-       time = factor( x=c(1,2,1,2,1,2), labels=c("time1","time2")), 
-       wm = c(3, 4, 6, 6, 9, 12) )
+       id = factor( c(1, 1, 2, 2, 3, 3, 4, 4), labels=c("alice","bob","chris","diana") ), 
+       time = factor( x=c(1,2,1,2,1,2,1,2), labels=c("time1","time2")), 
+       wm = c(3, 4, 6, 6, 9, 12,7,9) )
 	
+	
+pairedSamplesTTest( formula= wm~time, data=df, id="id" )
+
+# one sided test
+pairedSamplesTTest( formula= wm~time, data=df, id="id", one.sided="time2" )
+
+# missing data because of NA values
+df$wm[1] <- NA
+pairedSamplesTTest( formula= wm~time, data=df, id="id" )
+
+# missing data because of missing cases from the data frame
+df <- df[-1,] 
 pairedSamplesTTest( formula= wm~time, data=df, id="id" )
 
 
