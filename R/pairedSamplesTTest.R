@@ -8,7 +8,7 @@ pairedSamplesTTest <- function(
   formula,
   data=NULL,
   id=NULL,
-  alternative = "two.sided",
+  one.sided = FALSE,
   conf.level=.95
 ) {
   
@@ -197,13 +197,25 @@ pairedSamplesTTest <- function(
   
   ############ check other inputs ############ 
   
+  # group names
+  gp.names <- levels(data[,group])
+  
   # check alternative
-  if( !is(alternative,"character") | 
-        length(alternative) !=1 |
-        !(alternative %in% c("two.sided","less","greater"))
-  ) {
-    stop( '"alternative" must be "two.sided", "less", or "greater"')
+  if( length(one.sided) !=1 ) stop( "invalid value for 'one.sided'" )
+  if( one.sided == FALSE ) { # two sided
+    alternative <- "two.sided"
+  } else {
+    if( one.sided == gp.names[1] ) { # first factor level
+      alternative <- "greater"
+    } else { 
+      if( one.sided == gp.names[2] ) { # second factor level
+        alternative <- "less"
+      } else {
+        stop( "invalid value for 'one.sided'" )
+      }
+    }
   }
+  
   
   # check conf.level
   if( !is(conf.level,"numeric") |
@@ -217,9 +229,6 @@ pairedSamplesTTest <- function(
   
   
   ############ check cases and restructure ############ 
-  
-  # group names
-  gp.names <- levels(data[,group])
   
   # check that we have the right number of cases?
   tt <- table( data[,id], data[,group] )

@@ -84,14 +84,14 @@ print.TTest <- function( x, ... ) {
       
       # greater than test
       if( x$alternative == "greater" ) {
-        cat( "   null:        population means are equal, or smaller for",paste0("'",x$group.names[1],"'"),"\n" )
-        cat( "   alternative: population mean is larger for",paste0("'",x$group.names[1],"'"),"\n" )
+        cat( "   null:        population means are equal, or smaller for measurement",paste0("'",x$group.names[1],"'"),"\n" )
+        cat( "   alternative: population mean is larger for measurement",paste0("'",x$group.names[1],"'"),"\n" )
       }
       
       # less than test
       if( x$alternative == "less" ) {
-        cat( "   null:        population means are equal, or larger for", paste0("'",x$group.names[1],"'"),"\n" )
-        cat( "   alternative: population mean is smaller for",paste0("'",x$group.names[1],"'"),"\n" )
+        cat( "   null:        population means are equal, or smaller for measurement", paste0("'",x$group.names[2],"'"),"\n" )
+        cat( "   alternative: population mean is larger for measurement",paste0("'",x$group.names[2],"'"),"\n" )
       }
       
       
@@ -105,14 +105,14 @@ print.TTest <- function( x, ... ) {
       
       # greater than test
       if( x$alternative == "greater" ) {
-        cat( "   null:        population means are equal, or smaller for",paste0("'",x$group.names[1],"'"),"\n" )
-        cat( "   alternative: population mean is larger for",paste0("'",x$group.names[1],"'"),"\n" )
+        cat( "   null:        population means are equal, or smaller for group",paste0("'",x$group.names[1],"'"),"\n" )
+        cat( "   alternative: population mean is larger for group",paste0("'",x$group.names[1],"'"),"\n" )
       }
       
       # less than test
       if( x$alternative == "less" ) {
-        cat( "   null:        population means are equal, or larger for", paste0("'",x$group.names[1],"'"),"\n" )
-        cat( "   alternative: population mean is smaller for",paste0("'",x$group.names[1],"'"),"\n" )
+        cat( "   null:        population means are equal, or smaller for group", paste0("'",x$group.names[2],"'"),"\n" )
+        cat( "   alternative: population mean is larger for group",paste0("'",x$group.names[2],"'"),"\n" )
       }
       
       

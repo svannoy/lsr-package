@@ -6,7 +6,7 @@
 oneSampleTTest <- function(
   x, 
   mu,
-  alternative = "two.sided",
+  one.sided = FALSE,
   conf.level=.95
 ){
     
@@ -29,12 +29,11 @@ oneSampleTTest <- function(
   ############ check other input arguments ############ 
   
   # check alternative
-  if( !is(alternative,"character") | 
-      length(alternative) !=1 |
-      !(alternative %in% c("two.sided","less","greater"))
-  ) {
-    stop( '"alternative" must be "two.sided", "less", or "greater"')
+  if( length(one.sided) !=1 ) stop( "invalid value for 'one.sided'" )
+  if( one.sided != FALSE && !(one.sided %in% c("less","greater")) ) {
+    stop( "invalid value for 'one.sided'" )
   }
+  if( one.sided == FALSE ) { one.sided = "two.sided" }
   
   # check conf.level
   if( !is(conf.level,"numeric") |
@@ -51,7 +50,7 @@ oneSampleTTest <- function(
   if( any( is.na(x))) {warning( paste( sum(is.na(x))), " case(s) removed due to missingness" ) }
   
   # run the ttest
-  htest <- t.test( x=x, mu=mu, alternative=alternative )
+  htest <- t.test( x=x, mu=mu, alternative=one.sided )
   
   # get cohensD
   d <- cohensD( x=x, mu=mu )
@@ -77,7 +76,7 @@ oneSampleTTest <- function(
     group.names = NULL,
     id = NULL,
     mu = mu,
-    alternative = alternative,
+    alternative = one.sided,
     method = "One sample t-test",
     effect.size = d
   )
