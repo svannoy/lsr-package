@@ -45,9 +45,6 @@ independentSamplesTTest <- function(
       stop( paste0( "'",group,"' is not the name of a variable in '", deparse(substitute(data)), "'" ))
     }
     
-    # subset the data frame
-    data <- data[, c(outcome,group) ]
-    
   } else {
     
     # check that all variables exist in the workspace
@@ -70,6 +67,8 @@ independentSamplesTTest <- function(
     }
   }
   
+  # subset the data frame
+  data <- data[, c(outcome,group) ]
   
   ############ check classes for outcome, group and id ############ 
   
@@ -134,6 +133,11 @@ independentSamplesTTest <- function(
   
   
   ############ do the statistical calculations ############ 
+  
+  # find cases with missing data
+  missing <- apply( is.na(df), 1, any) 
+  if( any( missing) ) warning( paste(sum(missing)), " case(s) removed due to missingness")
+  data <- data[ !missing, ]
   
   # pass to t.test
   htest <- t.test( formula, data=data, var.equal=var.equal,

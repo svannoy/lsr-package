@@ -17,7 +17,7 @@ oneSampleTTest( x, mu=0, alternative="two.sided", conf.level=.95 )
 \arguments{
   \item{x}{The variable to be tested (required).}
   \item{mu}{The value against which the mean should be tested (required).}
-  \item{alternative}{One sided or two sided hypothesis (default = "two.sided")}
+  \item{alternative}{One sided or two sided hypothesis (default = \code{"two.sided"})}
   \item{conf.level}{The confidence level for the confidence interval (default = .95).}
 }
 
@@ -53,6 +53,7 @@ oneSampleTTest( x = likert, mu = 4, alternative = "greater" )
 oneSampleTTest( x = likert, mu = 4, conf.level=.99 ) 
 
 likert <- c(3,NA,4,NA,4,6,7,NA,6,6,7)
+oneSampleTTest( x = likert, mu = 4 ) 
 
 }
 

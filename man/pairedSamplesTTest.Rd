@@ -7,19 +7,23 @@ Paired samples t-test
 }
 
 \description{
-perform a paired samples t-test
+Convenience function that runs a paired samples t-test
 }
 
 \usage{
-pairedSamplesTTest(  ) 
+pairedSamplesTTest( formula, data=NULL, id=NULL, alternative = "two.sided", conf.level=.95 )
 }
 %- maybe also 'usage' for other objects documented here.
 \arguments{
-
+  \item{formula}{Formula specifying the outcome and the groups (required).}
+  \item{data}{Optional data frame containing the variables.}
+  \item{id}{The name of the id variable (must be a character string).}
+  \item{alternative}{One sided or two sided hypothesis (default = \code{"two.sided"})}
+  \item{conf.level}{The confidence level for the confidence interval (default = .95).}
 }
 
 \details{
-
+The \code{pairedSamplesTTest} function runs a paired-sample t-test, and prints the results in a format that is easier for novices to handle than the output of \code{t.test}. All the actual calculations are done by the \code{t.test} and \code{cohensD} functions. The data must be formatted as a "long form" data frame, as is typical of other functions that implement repeated measures analyses. The \code{formula} argument must be a two-sided formula of the form \code{outcome ~ group}, and the \code{id} argument must be a string specifying the name of the id variable. 
 }
 
 \value{An object of class 'TTest'.}
@@ -27,6 +31,8 @@ pairedSamplesTTest(  )
 %\references{
 %% ~put references to the literature/web site here ~
 %}
+
+\section{Note}{Although not "properly" documented, \code{pairedSamplesTTest} also supports an "lme4"-like method for specifying the entire model in the \code{formula} argument, removing the need to specify the \code{id} argument. To do so, the formula should be of the form \code{outcome ~ group + (id)} or \code{outcome ~ group + (1|id)}.}
 
 \section{Warning}{This package is under development, and has been released only due to teaching constraints. Until this notice disappears from the help files, you should assume that everything in the package is subject to change. Backwards compatibility is NOT guaranteed. Functions may be deleted in future versions and new syntax may be inconsistent with earlier versions. For the moment at least, this package should be treated with extreme caution.}
 
@@ -43,6 +49,14 @@ Daniel Navarro
 
 
 \examples{
+
+df <- data.frame(
+       id = factor( c(1, 1, 2, 2, 3, 3) ), 
+       time = factor( x=c(1,2,1,2,1,2), labels=c("time1","time2")), 
+       wm = c(3, 4, 6, 6, 9, 12) )
+	
+pairedSamplesTTest( formula= wm~time, data=df, id="id" )
+
 
 }
 

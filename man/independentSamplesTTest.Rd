@@ -11,15 +11,19 @@ perform an independent samples t-test
 }
 
 \usage{
-independentSamplesTTest(  ) 
+independentSamplesTTest( formula, data=NULL, var.equal=FALSE, alternative="two.sided", conf.level=.95 ) 
 }
 %- maybe also 'usage' for other objects documented here.
 \arguments{
-
+  \item{formula}{Formula specifying the outcome and the groups (required).}
+  \item{data}{Optional data frame containing the variables.}
+  \item{var.equal}{Should the test assume equal variances (default = \code{FALSE}).}
+  \item{alternative}{One sided or two sided hypothesis (default = \code{"two.sided"})}
+  \item{conf.level}{The confidence level for the confidence interval (default = .95).}
 }
 
 \details{
-
+The \code{independentSamplesTTest} function runs an independent-samples t-test and prints the results in a format that is easier for novices to handle than the output of \code{t.test}. All the actual calculations are done by the \code{t.test} and \code{cohensD} functions. The \code{formula} argument must be a two-sided formula of the form \code{outcome ~ group}. 
 }
 
 \value{An object of class 'TTest'.}
@@ -44,6 +48,11 @@ Daniel Navarro
 
 \examples{
 
+df <- data.frame( 
+	rt = c(451, 562, 704, 324, 505, 600, 829), 
+	cond = factor( c(1,1,1,2,2,2,2)) )
+
+independentSamplesTTest( rt ~ cond, df )
 }
 
 % Add one or more standard keywords, see file 'KEYWORDS' in the
