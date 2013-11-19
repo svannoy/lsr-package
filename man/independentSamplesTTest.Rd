@@ -55,7 +55,7 @@ Daniel Navarro
 
 df <- data.frame( 
 	rt = c(451, 562, 704, 324, 505, 600, 829), 
-	cond = factor( c(1,1,1,2,2,2,2), labels=c("group1","group2")) )
+	cond = factor( x=c(1,1,1,2,2,2,2), labels=c("group1","group2")))
 
 # Welch t-test
 independentSamplesTTest( rt ~ cond, df )

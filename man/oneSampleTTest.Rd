@@ -45,7 +45,7 @@ Daniel Navarro
 %% ~Make other sections like Warning with \section{Warning }{....} ~
 
 \seealso{
-\code{\link{t.test}}, \code{\link{pairedSamplesTTest}}, \code{\link{independentSamplesTTest}}
+\code{\link{t.test}}, \code{\link{pairedSamplesTTest}}, \code{\link{independentSamplesTTest}}, \code{\link{cohensD}}
 }
 
 

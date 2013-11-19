@@ -56,9 +56,12 @@ Daniel Navarro
 \examples{
 
 df <- data.frame(
-       id = factor( c(1, 1, 2, 2, 3, 3, 4, 4), labels=c("alice","bob","chris","diana") ), 
-       time = factor( x=c(1,2,1,2,1,2,1,2), labels=c("time1","time2")), 
-       wm = c(3, 4, 6, 6, 9, 12,7,9) )
+       id = factor( x=c(1, 1, 2, 2, 3, 3, 4, 4), 
+                    labels=c("alice","bob","chris","diana") ), 
+       time = factor( x=c(1,2,1,2,1,2,1,2), 
+                      labels=c("time1","time2")), 
+       wm = c(3, 4, 6, 6, 9, 12,7,9) 
+)
 	
 	
 pairedSamplesTTest( formula= wm~time, data=df, id="id" )
