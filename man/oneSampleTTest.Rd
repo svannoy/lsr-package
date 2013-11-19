@@ -11,7 +11,9 @@ Convenience function that runs a one sample t-test. This is a wrapper function i
 }
 
 \usage{
-oneSampleTTest( x, mu, alternative="two.sided", conf.level=.95 ) 
+oneSampleTTest( 
+	x, mu, alternative="two.sided", conf.level=.95 
+) 
 }
 %- maybe also 'usage' for other objects documented here.
 \arguments{

@@ -11,7 +11,10 @@ Convenience function that runs an independent samples t-test. This is a wrapper 
 }
 
 \usage{
-independentSamplesTTest( formula, data=NULL, var.equal=FALSE, alternative="two.sided", conf.level=.95 ) 
+independentSamplesTTest( 
+	formula, data=NULL, var.equal=FALSE, 
+	alternative="two.sided", conf.level=.95 
+) 
 }
 %- maybe also 'usage' for other objects documented here.
 \arguments{

@@ -11,7 +11,10 @@ Convenience function that runs a paired samples t-test. This is a wrapper functi
 }
 
 \usage{
-pairedSamplesTTest( formula, data=NULL, id=NULL, alternative = "two.sided", conf.level=.95 )
+pairedSamplesTTest( 
+	 formula, data=NULL, id=NULL,
+	 alternative = "two.sided", conf.level=.95 
+)
 }
 %- maybe also 'usage' for other objects documented here.
 \arguments{
