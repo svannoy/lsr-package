@@ -34,3 +34,4 @@ independentSamplesTTest
 ## register S3 methods
 S3method(print,whoList)
 S3method(print,correlate)
+S3method(print,TTest)

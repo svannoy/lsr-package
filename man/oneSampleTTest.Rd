@@ -11,14 +11,14 @@ perform a single sample t-test
 }
 
 \usage{
-oneSampleTTest( x, mu=0, alternative="two.sided", conf.level=.95 ) 
+oneSampleTTest( x, mu=0, alternative="two.sided", ... ) 
 }
 %- maybe also 'usage' for other objects documented here.
 \arguments{
   \item{x}{The variable to be tested.}
   \item{mu}{The value against which the mean should be tested.}
   \item{alternative}{One sided or two sided hypothesis}
-  \item{conf.level}{What kind of confidence interval to report}
+  \item{...}{Additional arguments to be passed to t.test}
 }
 
 \details{

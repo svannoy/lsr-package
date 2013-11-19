@@ -52,9 +52,9 @@ Each function can be found in a separate file, with the usual .R extension. Some
 - `ciMean`	Compute a standard (i.e. normal) confidence interval around the sample mean
 - `standardCoefs`	Compute standardised regression coefficients for a linear model
 - `posthocPairwiseT`	Convenience function for running post-hoc pairwise t-tests for ANOVA
-- `oneSampleTTest`
-- `pairedSamplesTTest`
-- `independentSamplesTTest`
+- `oneSampleTTest`	Convenience function for running one-sample t-test
+- `pairedSamplesTTest`	Convenience function for running paired-samples t-test
+- `independentSamplesTTest`	 Convenience function for running independent-samples t-test
 
 ### Data manipulation
 
