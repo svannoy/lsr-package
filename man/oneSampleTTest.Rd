@@ -7,7 +7,7 @@ One sample t-test
 }
 
 \description{
-Convenience function that runs a one sample t-test
+Convenience function that runs a one sample t-test. This is a wrapper function intended to be used for pedagogical purposes only.
 }
 
 \usage{
@@ -25,7 +25,7 @@ oneSampleTTest( x, mu, alternative="two.sided", conf.level=.95 )
 The \code{oneSampleTTest} function runs a one-sample t-test on the data in \code{x}, and prints the results in a format that is easier for novices to handle than the output of \code{t.test}. All the actual calculations are done by the \code{t.test} and \code{cohensD} functions. 
 }
 
-\value{An object of class 'TTest'.}
+\value{An object of class 'TTest'. When printed, the output is organised into five short sections. The first section lists the name of the test and the variables included. The second provides means and standard deviations. The third states explicitly what the null and alternative hypotheses were. The fourth contains the test results: t-statistic, degrees of freedom and p-value. The final section includes the relevant confidence interval and an estimate of the effect size (i.e., Cohen's d)}
 
 %\references{
 %% ~put references to the literature/web site here ~
@@ -41,7 +41,7 @@ Daniel Navarro
 %% ~Make other sections like Warning with \section{Warning }{....} ~
 
 \seealso{
-\code{\link{t.test}}, \code{pairedSamplesTTest}, \code{independentSamplesTTest}
+\code{\link{t.test}}, \code{\link{pairedSamplesTTest}}, \code{\link{independentSamplesTTest}}
 }
 
 

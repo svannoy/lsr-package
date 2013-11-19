@@ -7,7 +7,7 @@ Paired samples t-test
 }
 
 \description{
-Convenience function that runs a paired samples t-test
+Convenience function that runs a paired samples t-test. This is a wrapper function intended to be used for pedagogical purposes only.
 }
 
 \usage{
@@ -26,7 +26,7 @@ pairedSamplesTTest( formula, data=NULL, id=NULL, alternative = "two.sided", conf
 The \code{pairedSamplesTTest} function runs a paired-sample t-test, and prints the results in a format that is easier for novices to handle than the output of \code{t.test}. All the actual calculations are done by the \code{t.test} and \code{cohensD} functions. The data must be formatted as a "long form" data frame, as is typical of other functions that implement repeated measures analyses. The \code{formula} argument must be a two-sided formula of the form \code{outcome ~ group}, and the \code{id} argument must be a string specifying the name of the id variable. 
 }
 
-\value{An object of class 'TTest'.}
+\value{An object of class 'TTest'. When printed, the output is organised into five short sections. The first section lists the name of the test and the variables included. The second provides means and standard deviations. The third states explicitly what the null and alternative hypotheses were. The fourth contains the test results: t-statistic, degrees of freedom and p-value. The final section includes the relevant confidence interval and an estimate of the effect size (i.e., Cohen's d)}
 
 %\references{
 %% ~put references to the literature/web site here ~
@@ -44,7 +44,7 @@ Daniel Navarro
 %% ~Make other sections like Warning with \section{Warning }{....} ~
 
 \seealso{
-\code{\link{t.test}}, \code{oneSampleTTest}, \code{independentSamplesTTest}
+\code{\link{t.test}}, \code{\link{oneSampleTTest}}, \code{\link{independentSamplesTTest}}
 }
 
 
