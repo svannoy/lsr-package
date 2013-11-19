@@ -22,7 +22,7 @@ independentSamplesTTest(  )
 
 }
 
-\value{An object of class ... }
+\value{An object of class 'TTest'.}
 
 %\references{
 %% ~put references to the literature/web site here ~

@@ -47,6 +47,9 @@ oneSampleTTest <- function(
   
   ############ do the statistical calculations ############ 
   
+  # check for missing data
+  if( any( is.na(x))) {warning( paste( sum(is.na(x))), " case(s) removed due to missingness" ) }
+  
   # run the ttest
   htest <- t.test( x=x, mu=mu, alternative=alternative )
   
@@ -67,8 +70,8 @@ oneSampleTTest <- function(
     p.value = htest$p.value,
     conf.int = htest$conf.int,
     conf = conf.level,
-    mean = mean(x),
-    sd = sd(x),
+    mean = mean(x, na.rm=TRUE),
+    sd = sd(x, na.rm=TRUE),
     outcome = outcome,
     group = NULL,
     group.names = NULL,

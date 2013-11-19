@@ -7,25 +7,25 @@ One sample t-test
 }
 
 \description{
-perform a single sample t-test
+Convenience function that runs a one sample t-test
 }
 
 \usage{
-oneSampleTTest( x, mu=0, alternative="two.sided", ... ) 
+oneSampleTTest( x, mu=0, alternative="two.sided", conf.level=.95 ) 
 }
 %- maybe also 'usage' for other objects documented here.
 \arguments{
-  \item{x}{The variable to be tested.}
-  \item{mu}{The value against which the mean should be tested.}
-  \item{alternative}{One sided or two sided hypothesis}
-  \item{...}{Additional arguments to be passed to t.test}
+  \item{x}{The variable to be tested (required).}
+  \item{mu}{The value against which the mean should be tested (required).}
+  \item{alternative}{One sided or two sided hypothesis (default = "two.sided")}
+  \item{conf.level}{The confidence level for the confidence interval (default = .95).}
 }
 
 \details{
-The \code{oneSampleTTest} function 
+The \code{oneSampleTTest} function runs a one-sample t-test on the data in \code{x}, and prints the results in a format that is easier for novices to handle than the output of \code{t.test}. All the actual calculations are done by the \code{t.test} and \code{cohensD} functions. 
 }
 
-\value{An object of class ... }
+\value{An object of class 'TTest'.}
 
 %\references{
 %% ~put references to the literature/web site here ~
@@ -46,6 +46,13 @@ Daniel Navarro
 
 
 \examples{
+likert <- c(3,1,4,1,4,6,7,2,6,6,7)
+
+oneSampleTTest( x = likert, mu = 4 ) 
+oneSampleTTest( x = likert, mu = 4, alternative = "greater" ) 
+oneSampleTTest( x = likert, mu = 4, conf.level=.99 ) 
+
+likert <- c(3,NA,4,NA,4,6,7,NA,6,6,7)
 
 }
 

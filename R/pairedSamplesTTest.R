@@ -88,7 +88,6 @@ pairedSamplesTTest <- function(
     
     if( !meets.sneaky.case ) stop( "no 'id' variable specified")
     
-    
   }
   
   
