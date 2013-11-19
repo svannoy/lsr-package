@@ -37,9 +37,56 @@ pairedSamplesTTest <- function(
   } else { # no, there isn't...
     
     # if there's no id, then the formula must specify the id variable in a
-    # lme4-like fashion... either this:  DV ~ IV + (id) or DV ~ IV + (1|id)
+    # lme4-like fashion... either this:  DV ~ IV + (id) or DV ~ IV + (1|id).
+    # this functionality is not properly, but my own sense of elegance 
+    # makes me want to be able to specify the full model via the formula
     
-    stop( "no 'id' variable")
+
+    meets.sneaky.case <- FALSE
+        
+    if( length( formula)==3 ) { # must be a two sided formula...
+      outcome <- all.vars(formula[[2]]) # pull the outcome variable [to be checked later]
+      if( length( outcome)==1 ) { # must contain only one outcome variable...
+        
+        rhs <- formula[[3]] # grab the right hand side of the formula
+        if( is( rhs, "call" ) &&  # RHS must be a call
+            length( rhs)==3 &&  # must be a binary operation
+            deparse( rhs[[1]]) == "+"  # that operation must be +
+        ) { 
+          terms <- strsplit( deparse(rhs), split="+", fixed=TRUE)[[1]] # split by +
+          if( length(terms) == 2 ) { # must have only two terms...
+            terms <- gsub(" ","",terms) # deblank
+            
+            id.candidate <- grep("\\(.*\\)",terms) # id variable must have (.*) in it
+            if( length( id.candidate) == 1) { # there can be only 1
+              id <- terms[id.candidate] # grab that term
+              group <- terms[3-id.candidate] # assume the other one is the group [it is checked later] 
+              
+              # does it match lme4-like (1|id) ?
+              if( length(grep( "^\\(1\\|.*\\)$", id ))==1 ) {
+                id <- gsub( "^\\(1\\|", "", id ) # delete the front bit
+                id <- gsub( "\\)$", "", id ) # delete the back bit
+                formula <- as.formula( paste(outcome, "~", group) ) # truncated formula
+                meets.sneaky.case <- TRUE
+                
+              } else {
+                
+                # alternatively, does it match (id) ?
+                if( length(grep( "^\\(.*\\)$", id ))==1  ) {
+                  id <- gsub( "^\\(", "", id ) # delete the front bit
+                  id <- gsub( "\\)$", "", id ) # delete the back bit
+                  formula <- as.formula( paste(outcome, "~", group) ) # truncated formula
+                  meets.sneaky.case <- TRUE                 
+                  
+                }  
+              } 
+            }   
+          }
+        }
+      }      
+    }
+    
+    if( !meets.sneaky.case ) stop( "no 'id' variable specified")
     
     
   }
