@@ -2,7 +2,7 @@ Package: lsr
 Type: Package
 Title: Companion package to "Learning Statistics with R"
 Version: 0.3.1
-Date: 2013-11-19
+Date: 2014-01-29
 Author: Daniel Navarro
 Maintainer: Daniel Navarro <daniel.navarro@adelaide.edu.au>
 Description: Functions that I have found useful for teaching purposes.
