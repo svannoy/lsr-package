@@ -5,7 +5,7 @@
 
 
 
-associationTest <- function( formula, data ) {
+associationTest <- function( formula, data=NULL ) {
   
   ############ check  formula ############ 
   

@@ -7,7 +7,7 @@ The `lsr` package is the package associated with my introductory statistics clas
 
 ## Version
 
-The current version on CRAN is 0.3. The repository files represent the current state of 0.3.1
+The current version on CRAN is 0.3.2. The repository files represent the current state of 0.3.3.
 
 ## Installation
 
@@ -55,6 +55,8 @@ Each function can be found in a separate file, with the usual .R extension. Some
 - `oneSampleTTest`	Convenience function for running one-sample t-test
 - `pairedSamplesTTest`	Convenience function for running paired-samples t-test
 - `independentSamplesTTest`	 Convenience function for running independent-samples t-test
+- `goodnessOfFitTest` Convenience function for running a chi-square goodness of fit test against specified probabilities
+- `associationTest` Convenience function for running a chi-square test of association / independence between two categorical variables
 
 ### Data manipulation
 
