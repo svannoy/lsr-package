@@ -7,7 +7,7 @@ The `lsr` package is the package associated with my introductory statistics clas
 
 ## Version
 
-The current version on CRAN is 0.3.2. The repository files represent the current state of 0.3.3.
+The current version on CRAN is 0.3.2. The repository files represent the current state of 0.5, to correspond with version 0.5 of the book
 
 ## Installation
 
