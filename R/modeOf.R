@@ -1,12 +1,12 @@
 # file:    modeOf.R 
 # author:  Dan Navarro
 # contact: daniel.navarro@adelaide.edu.au
-# changed: 26 August 2014
+# changed: 18 February 2015
 
 # modeOf() returns the sample mode: the value that has highest observed frequency
 modeOf <- function(x, na.rm = TRUE) {
   
-  if( !is.vector(x) | !is.factor(x) ) {
+  if( !is.vector(x) & !is.factor(x) ) {
     stop( '"x" must be a vector or a factor')
   }
   if( !is(na.rm,"logical") | length(na.rm) !=1 ) {
