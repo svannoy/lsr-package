@@ -1,10 +1,11 @@
 Package: lsr
 Type: Package
-Title: Companion package to "Learning Statistics with R"
+Title: Companion Package to "Learning Statistics with R"
 Version: 0.5
 Date: 2015-02-18
 Author: Daniel Navarro
 Maintainer: Daniel Navarro <daniel.navarro@adelaide.edu.au>
-Description: Functions that I have found useful for teaching purposes.
+Description: Tools for novice users, including wrapper functions for several statistical tests, simple effect size calculations, and basic data manipulation
+URL: http://ua.edu.au/ccs/teaching/lsr
 License: GPL-3
 LazyLoad: yes
