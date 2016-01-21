@@ -10,7 +10,7 @@ aad <- function(x, na.rm = FALSE) {
   if ( !is(x,"numeric") & !is(x,"integer") ) {
     stop( '"x" must be numeric')
   }
-  if( !is(na.rm,"logical") | length(na.rm) !=1 ) {
+  if( !is(na.rm,"logical") | length(na.rm) !=1 ) { 
     stop( '"na.rm" must be a single logical value')
   }
   if (na.rm) { x <- x[!is.na(x)] }
