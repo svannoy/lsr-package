@@ -1,4 +1,7 @@
-# file:    aad.R 
+Adding this bug so I can figure out how to retreive and older file from Git. I'll commit this change and then retreive the older version
+
+  
+  # file:    aad.R 
 # author:  Dan Navarro
 # contact: daniel.navarro@adelaide.edu.au
 # changed: 13 November 2013
